@@ -1,20 +1,20 @@
 import { useState, type FormEvent } from "react";
 import { Label } from "../components/Bits";
-import { studio } from "../data";
+import { mailHref, studio } from "../data";
 
 type Status = "idle" | "error" | "sent";
 
 const starters = [
-  "the email we are embarrassed by",
-  "a list that deserves better",
-  "please autopsy this welcome series",
-  "our newsletter has no pulse",
+  "our acquisition cost is the whole problem",
+  "the welcome flow is still a template",
+  "black friday cannot be a blast",
+  "we are paying twice for the same buyer",
 ];
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<string[]>([]);
-  const [sent, setSent] = useState({ name: "", email: "", subject: "" });
+  const [sent, setSent] = useState({ name: "", email: "", subject: "", href: "" });
   const [subjectHint, setSubjectHint] = useState("");
 
   function onSubject(value: string) {
@@ -48,8 +48,10 @@ export function Contact() {
       return;
     }
     setErrors([]);
-    setSent({ name, email, subject });
+    const href = mailHref(subject, `${name} (${email})\n\n${message}`);
+    setSent({ name, email, subject, href });
     setStatus("sent");
+    window.location.href = href;
   }
 
   return (
@@ -60,9 +62,9 @@ export function Contact() {
           Write to us like a <em>person.</em>
         </h1>
         <p className="lede">
-          {studio.taking} Tell us what you send, who it is for, and which email you would
-          not read out loud. Remy’s standard is one business day. The prototype on this
-          page is faster, and it does not leave the browser.
+          {studio.taking} Tell us the store, what a customer costs to acquire, and which
+          flow is still a template. {studio.hours} The form opens a draft in your mail
+          app. You send it.
         </p>
       </header>
 
@@ -70,23 +72,20 @@ export function Contact() {
         <aside className="contact-aside">
           <p className="label">The thread</p>
           <ol className="aside-steps">
-            <li>You write. Specific is better than polished.</li>
-            <li>We read the actual emails, not the deck about the emails.</li>
+            <li>You write. The store, the acquisition cost, the flow that is still a template.</li>
+            <li>We read the live emails, not the deck about the emails.</li>
             <li>You get a point of view, including a no, if a no is the honest reply.</li>
           </ol>
           <div className="label-card">
-            <p className="label">Studio</p>
+            <p className="label">Account</p>
             <p className="brand label-brand">
-              PS<span>.</span>
+              Dobrevo<span>.</span>
             </p>
-            {studio.address.map((line) => (
+            {studio.who.map((line) => (
               <p key={line}>{line}</p>
             ))}
             <p>
               <a href={`mailto:${studio.email}`}>{studio.email}</a>
-            </p>
-            <p>
-              <a href={`tel:+1${studio.phone.replace(/-/g, "")}`}>{studio.phone}</a>
             </p>
             <p className="fine">{studio.hours}</p>
           </div>
@@ -95,8 +94,8 @@ export function Contact() {
         {status === "sent" ? (
           <div className="composer sent-state" role="status">
             <header className="composer-bar">
-              <p>Sent — locally</p>
-              <span className="stamp stamp-sm">Held</span>
+              <p>Draft ready</p>
+              <span className="stamp stamp-sm">Open</span>
             </header>
             <div className="composer-body">
               <p>
@@ -108,11 +107,15 @@ export function Contact() {
               <p>
                 <span>Subject</span> {sent.subject}
               </p>
-              <h2>Nothing was delivered. This is the one failed send we endorse.</h2>
+              <h2>The brief is in your mail app.</h2>
               <p>
-                The note stayed on this page. A live PS. would have it in Remy’s queue
-                before your tea steeped. Use the address if you want a human, and know
-                that this concept studio is not that inbox.
+                If the draft did not open, use the link. We read what arrives at{" "}
+                {studio.email}. {studio.hours}
+              </p>
+              <p>
+                <a className="btn" href={sent.href}>
+                  Open the draft
+                </a>
               </p>
               <button
                 type="button"
@@ -130,7 +133,7 @@ export function Contact() {
           <form className="composer" onSubmit={onSubmit} noValidate>
             <header className="composer-bar">
               <p>New message</p>
-              <span>Draft stays here</span>
+              <span>Opens your mail app</span>
             </header>
             {status === "error" ? (
               <div className="form-errors" role="alert">
@@ -184,14 +187,14 @@ export function Contact() {
               <textarea
                 name="message"
                 rows={8}
-                placeholder="What you send, who it is for, and the email you would not read out loud."
+                placeholder="The store, what a customer costs, and the flow that is still a template."
               />
             </label>
             <footer className="composer-actions">
               <button className="btn" type="submit">
                 Send, don’t overthink it
               </button>
-              <p>Prototype only. Your note never leaves this browser.</p>
+              <p>Opens a draft to {studio.email}. You send it from there.</p>
             </footer>
           </form>
         )}

@@ -35,7 +35,7 @@ export function WorkDetail() {
       <section className="letter-frame" aria-label="The email, abbreviated">
         <header>
           <p>
-            <span>From</span> {study.client}, via PS.
+            <span>From</span> Dobrevo, for the store
           </p>
           <p>
             <span>Subject</span> {study.excerpt.subject}
@@ -46,7 +46,7 @@ export function WorkDetail() {
         ))}
         <footer>
           <span className="stamp stamp-sm">Sent</span>
-          <p>Excerpt from the file. The brands are fictional. The sentences are the point.</p>
+          <p>How we would write it. The program is the point, not a borrowed logo.</p>
         </footer>
       </section>
 
@@ -57,8 +57,8 @@ export function WorkDetail() {
           <p>{study.brief}</p>
         </section>
         <section>
-          <Label>The mischief</Label>
-          <h2>What we did about it.</h2>
+          <Label>The work</Label>
+          <h2>What we do about it.</h2>
           <ol className="moves">
             {study.moves.map((move) => (
               <li key={move}>{move}</li>
@@ -69,7 +69,7 @@ export function WorkDetail() {
 
       <section className="section rule-top">
         <Label>The lines</Label>
-        <h2>Subject lines that shipped.</h2>
+        <h2>Subject lines we would ship.</h2>
         <ul className="line-list">
           {study.subjects.map((subject, line) => (
             <li key={subject}>
@@ -95,7 +95,7 @@ export function WorkDetail() {
       </figure>
 
       <Link className="next-file" to={`/work/${next.slug}`}>
-        <span>Next file</span>
+        <span>Next program</span>
         <strong>
           {next.client} — {next.campaign}
         </strong>

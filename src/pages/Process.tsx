@@ -8,12 +8,12 @@ export function Process() {
       <header className="page-head">
         <Label index="02">Our Process</Label>
         <h1 className="display display-sm">
-          Six steps. Five of them are <em>deletion.</em>
+          Six moves. The ads stay <em>on.</em>
         </h1>
         <p className="lede">
-          This is not a funnel. Funnels are what happen to emails that deserved a better
-          fate. Our process is a thread: read, steal the voice, cut, argue, send, and then
-          write the sequel while the lesson is still warm.
+          We do not ask you to stop acquiring customers. We stop you paying full price for
+          the ones you already have. Capture the email, repay the click, warm the list,
+          earn the second order, and show up to Black Friday with a plan.
         </p>
       </header>
 
@@ -66,9 +66,9 @@ export function Process() {
       </div>
 
       <section className="closer closer-ink">
-        <h2>If the program cannot survive a kill list, it was a pile of sends.</h2>
+        <h2>If the list cannot carry a second order, the ads are doing two jobs.</h2>
         <Link className="btn" to="/contact">
-          Bring us the pile
+          Bring us the store
         </Link>
       </section>
     </article>

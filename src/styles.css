@@ -189,10 +189,11 @@ a { color: inherit; }
 .brand {
   font-family: var(--serif);
   font-weight: 620;
-  font-size: 2rem;
-  letter-spacing: -0.04em;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  letter-spacing: -0.045em;
   text-decoration: none;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .brand span { color: var(--stamp); }
@@ -575,7 +576,11 @@ a { color: inherit; }
   margin: 0;
 }
 
-.feature-stat { font-size: clamp(5rem, 10vw, 8.5rem); color: var(--lime); }
+.feature-stat {
+  font-size: clamp(3.6rem, 8vw, 6.4rem);
+  color: var(--lime);
+  overflow-wrap: anywhere;
+}
 
 .feature-label,
 .study-hero-stat span,
@@ -761,7 +766,16 @@ a { color: inherit; }
   gap: 1.5rem;
 }
 
-.footer-brand { font-size: 2.6rem; }
+.footer-brand { font-size: 2.15rem; white-space: nowrap; }
+
+.niches {
+  margin: 0.85rem 0 0;
+  max-width: 38rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
 
 .footer-tag { margin: 0.3rem 0; font-family: var(--serif); font-size: 1.35rem; letter-spacing: -0.03em; }
 
@@ -992,7 +1006,7 @@ a { color: inherit; }
   margin: 0 0 0.8rem;
 }
 
-.study-stat { font-size: clamp(3.2rem, 6vw, 5rem); }
+.study-stat { font-size: clamp(2.6rem, 5vw, 4.2rem); overflow-wrap: anywhere; }
 
 .study-card h2 { margin: 0.2rem 0 0; font-size: clamp(1.8rem, 3vw, 2.6rem); }
 
@@ -1045,7 +1059,7 @@ a { color: inherit; }
   padding: 1.2rem;
 }
 
-.study-hero-stat p { font-size: clamp(4rem, 7vw, 6rem); }
+.study-hero-stat p { font-size: clamp(3rem, 6vw, 5rem); overflow-wrap: anywhere; }
 
 .letter-frame {
   margin: 1.2rem var(--gutter) 0;
@@ -1232,7 +1246,7 @@ a { color: inherit; }
     var(--cream);
 }
 
-.label-brand { font-size: 2.4rem; margin: 0.2rem 0 0.6rem; }
+.label-brand { font-size: 1.7rem; margin: 0.2rem 0 0.6rem; white-space: nowrap; }
 
 .mailing-label p, .label-card p { margin: 0.1rem 0; }
 

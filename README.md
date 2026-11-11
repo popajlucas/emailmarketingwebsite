@@ -1,8 +1,8 @@
-# PS. Studio
+# Dobrevo Emails
 
-A concept site for an email marketing studio. Six pages, one voice, and a banned-word list.
+The site for Dobrevo Emails, an ecommerce email marketing agency. Six pages, one voice, and a banned-line list.
 
-The case studies are fiction. The editing standard is not.
+The case-study pages are the programs we install, written the way we would write them for a store. They are not named client results.
 
 ## Run it
 
@@ -15,15 +15,17 @@ Open the local URL Vite prints. `npm run build` typechecks and writes `dist/`.
 
 ## Edit the words
 
-All studio copy lives in `src/data.ts`: the name, the case files, the team, the jobs, and the phrases the studio refuses to type. Pages in `src/pages` are the layout. Visual rules live in `src/styles.css`.
+Copy lives in `src/data.ts`: the name, the programs, the desk, the jobs, and the lines we will not send. Pages in `src/pages` are the layout. Visual rules live in `src/styles.css`.
+
+The public inbox is `hello@dobrevoemails.com`. Change `studio.email` if that address is wrong.
 
 ## Pages
 
 - Home
 - Our Process
-- Case Studies, plus a file for each campaign
+- Case Studies, plus a page for each program
 - About Us
 - Careers
 - Contact Us
 
-Contact and careers forms stay in the browser. They validate, then show a receipt. Nothing is sent anywhere.
+Contact and careers forms validate, then open a draft in the visitor’s mail app. Nothing is stored on a server.

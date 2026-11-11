@@ -38,7 +38,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="desk">
       <p className="spine" aria-hidden="true">
-        Read me, then reply — PS. Studio — Do not archive
+        Dobrevo Emails — Sell to the list you own
       </p>
       <div className="sheet">
         <a className="skip" href="#main">
@@ -61,8 +61,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
             </p>
           </div>
           <nav className="nav" aria-label="Primary">
-            <Link className="brand" to="/" aria-label="PS. home">
-              PS<span>.</span>
+            <Link className="brand" to="/" aria-label="Dobrevo Emails home">
+              Dobrevo<span>.</span>
             </Link>
             <button
               type="button"
@@ -101,14 +101,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <div className="footer-grid">
             <div>
               <p className="brand footer-brand">
-                PS<span>.</span>
+                Dobrevo<span>.</span>
               </p>
               <p className="footer-tag">{studio.tagline}</p>
               <p className="fine">{studio.taking}</p>
             </div>
             <div>
-              <p className="label">Visit</p>
-              {studio.address.map((line) => (
+              <p className="label">{studio.address.length ? "Visit" : "For"}</p>
+              {(studio.address.length ? studio.address : studio.who).map((line) => (
                 <p key={line}>{line}</p>
               ))}
               <p className="fine">{studio.hours}</p>
@@ -118,9 +118,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <p>
                 <a href={`mailto:${studio.email}`}>{studio.email}</a>
               </p>
-              <p>
-                <a href={`tel:+1${studio.phone.replace(/-/g, "")}`}>{studio.phone}</a>
-              </p>
+              {studio.phone ? (
+                <p>
+                  <a href={`tel:+1${studio.phone.replace(/-/g, "")}`}>{studio.phone}</a>
+                </p>
+              ) : null}
               <Unsubscribe />
             </div>
             <div>
@@ -136,8 +138,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="colophon">
             <p>
-              © {new Date().getFullYear()} {studio.legal}. The case studies are fiction.
-              The dislike of “circling back” is sincere.
+              © {new Date().getFullYear()} {studio.legal}. Ecommerce email for brands
+              that are done paying twice for the same customer.
             </p>
             <p>Set in Fraunces and Outfit. No photographs of people pointing at laptops.</p>
           </div>

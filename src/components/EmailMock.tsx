@@ -44,7 +44,7 @@ export function EmailMock() {
   return (
     <article
       className="mock"
-      aria-label="Sample email from the studio’s case files"
+      aria-label="Sample email from a Dobrevo program"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}

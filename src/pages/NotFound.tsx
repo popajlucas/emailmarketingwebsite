@@ -10,16 +10,15 @@ export function NotFound() {
         This page was filtered to <em>spam.</em>
       </h1>
       <p className="lede">
-        The filter’s stated reason: the URL contained too many consonants and not enough
-        point of view. We have appealed. Appeals take time. The rest of the studio does
-        not.
+        The filter’s stated reason: the URL had too many consonants and not enough of a
+        second purchase. The programs are still here.
       </p>
       <div className="hero-actions">
         <Link className="btn" to="/">
           Fish it out
         </Link>
         <Link className="btn btn-ghost" to="/work">
-          Read a real file
+          See the programs
         </Link>
       </div>
     </article>

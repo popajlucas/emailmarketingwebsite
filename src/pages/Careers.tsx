@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Label } from "../components/Bits";
-import { hireSteps, jobs, perks } from "../data";
+import { hireSteps, jobs, mailHref, perks, studio } from "../data";
 
 type Status = "idle" | "error" | "sent";
 
@@ -12,7 +12,7 @@ export function Careers() {
   const [role, setRole] = useState(startingRole);
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<string[]>([]);
-  const [receipt, setReceipt] = useState({ name: "", line: "" });
+  const [receipt, setReceipt] = useState({ name: "", line: "", href: "" });
 
   useEffect(() => {
     if (jobs.some((job) => job.id === requested)) setRole(requested);
@@ -45,9 +45,15 @@ export function Careers() {
       setStatus("error");
       return;
     }
+    const chosen = jobs.find((job) => job.id === role)?.title ?? role;
     setErrors([]);
-    setReceipt({ name, line });
+    const href = mailHref(
+      `Application: ${chosen}`,
+      `${name} (${email})\nRole: ${chosen}\nSubject line: ${line}\n${link ? `Work: ${link}\n` : ""}\n${note}`,
+    );
+    setReceipt({ name, line, href });
     setStatus("sent");
+    window.location.href = href;
   }
 
   return (
@@ -55,12 +61,12 @@ export function Careers() {
       <header className="page-head">
         <Label index="05">Careers</Label>
         <h1 className="display display-sm">
-          We hire people who get annoyed by bad email <em>in public.</em>
+          People who have run ecommerce email <em>at volume.</em>
         </h1>
         <p className="lede">
-          If you have ever rewritten a brand’s welcome series in your head while standing
-          in their store, you will understand the room. The roles are a concept for this
-          studio. The standards are the ones we would hire with.
+          Welcome flows, abandon flows, and a Black Friday that was a sequence. If you
+          have rewritten a store’s automations because the template was costing them the
+          second order, this is the desk.
         </p>
       </header>
 
@@ -98,7 +104,7 @@ export function Careers() {
       </section>
 
       <section className="section rule-top">
-        <Label>The deal</Label>
+        <Label>How we work</Label>
         <div className="perk-grid">
           {perks.map((perk) => (
             <article key={perk.title}>
@@ -112,20 +118,26 @@ export function Careers() {
       <section className="apply" id="apply">
         <div>
           <Label>Application</Label>
-          <h2>Write to the studio.</h2>
+          <h2>Write to the account.</h2>
           <p>
-            This form is a working prototype. It checks the note, then keeps it in the
-            browser. Nothing is delivered to an inbox. In a live studio, Remy would answer.
+            The form checks the note, then opens a draft to {studio.email}. Send it from
+            your mail app. Pay is a conversation, not a number printed before we have
+            spoken.
           </p>
         </div>
         {status === "sent" ? (
           <div className="receipt" role="status">
-            <p className="label">Received, locally</p>
-            <h3>{receipt.name}, we have the line.</h3>
+            <p className="label">Draft opened</p>
+            <h3>{receipt.name}, the line is in the draft.</h3>
             <p className="subject-pill">{receipt.line}</p>
             <p>
-              Nothing left this browser. If PS. were taking applications for real, this is
-              the shape of the note we would want.
+              If your mail app stayed closed, open the draft from here. We reply to what
+              arrives.
+            </p>
+            <p>
+              <a className="btn" href={receipt.href}>
+                Open the draft
+              </a>
             </p>
             <button type="button" className="btn" onClick={() => setStatus("idle")}>
               Write another
@@ -142,11 +154,11 @@ export function Careers() {
             ) : null}
             <label>
               Name
-              <input name="name" autoComplete="name" placeholder="Juniper Hale" />
+              <input name="name" autoComplete="name" placeholder="Your name" />
             </label>
             <label>
               Email
-              <input name="email" type="email" autoComplete="email" placeholder="you@studio.com" />
+              <input name="email" type="email" autoComplete="email" placeholder="you@email.com" />
             </label>
             <label>
               Role
@@ -160,7 +172,7 @@ export function Careers() {
             </label>
             <label>
               A subject line you would ship
-              <input name="line" placeholder="the renewal is on the 12th" />
+              <input name="line" placeholder="the second order should not need an ad" />
             </label>
             <label>
               A link to work <span>optional</span>

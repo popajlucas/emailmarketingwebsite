@@ -15,12 +15,12 @@ export function Work() {
       <header className="page-head">
         <Label index="03">Case Studies</Label>
         <h1 className="display display-sm">
-          Proof, with the boring parts <em>cut.</em>
+          The programs, with the templates <em>cut.</em>
         </h1>
         <p className="lede">
-          Eight campaigns. The brands are fictional. The standard is the one we would take
-          into a room with your actual list: specific, cut hard, and willing to be read out
-          loud.
+          Eight systems we install for ecommerce brands. These are not borrowed client
+          logos. They are the flows and the peak calendar, written the way we would write
+          them for a store that is tired of renting every reorder.
         </p>
       </header>
 
@@ -50,7 +50,7 @@ export function Work() {
             <p className="study-campaign">{study.campaign}</p>
             <p className="study-summary">{study.summary}</p>
             <p className="subject-pill">{study.excerpt.subject}</p>
-            <span className="card-open">Open the file</span>
+            <span className="card-open">Open the program</span>
           </Link>
         ))}
       </div>

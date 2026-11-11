@@ -16,7 +16,7 @@ export function BannedWall() {
 
   return (
     <div className="banned">
-      <div className="banned-cloud" role="listbox" aria-label="Phrases the studio will not write">
+      <div className="banned-cloud" role="listbox" aria-label="Lines Dobrevo will not send">
         {banned.map((item, index) => (
           <button
             key={item.word}
